@@ -37,7 +37,7 @@ export default function FreshVision() {
   const fetchFruitUseCases = async (className, score) => {
     try {
       const ai = new GoogleGenAI({
-        apiKey: "AIzaSyCdsY6jsqN1mBCIP7QbY766xKsZUH4-7yU",
+        apiKey: "AIzaSyDgjUN6ZEUuMvnBReDzusbwseBcDE0I9m0",
       });
 
       const ripenessLabel =
@@ -112,7 +112,7 @@ export default function FreshVision() {
       } catch (err) {
         console.error(err);
         setError(
-          "Failed to load ML libraries. Please check network and refresh the page."
+          "Failed to load ML libraries. Please check network and refresh the page.",
         );
         setIsLoadingModel(false);
       }
@@ -131,7 +131,7 @@ export default function FreshVision() {
       } catch (err) {
         console.error("Model load error:", err);
         setError(
-          "Failed to load model. Ensure 'my_model' folder is present and accessible."
+          "Failed to load model. Ensure 'my_model' folder is present and accessible.",
         );
       } finally {
         setIsLoadingModel(false);
@@ -199,7 +199,7 @@ export default function FreshVision() {
           throw new Error("No predictions returned");
 
         const top = preds.reduce((a, b) =>
-          a.probability > b.probability ? a : b
+          a.probability > b.probability ? a : b,
         );
         const score = computeRipenessScore(top.className, top.probability);
         const geminiText = await fetchFruitUseCases(top.className, score);
@@ -534,7 +534,7 @@ export default function FreshVision() {
                     <div className="text-center">
                       <div
                         className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r ${getZoneGradient(
-                          prediction.score
+                          prediction.score,
                         )} rounded-3xl mb-4 shadow-lg`}
                       >
                         <CheckCircle className="w-10 h-10 text-white" />
@@ -561,7 +561,7 @@ export default function FreshVision() {
                         </h3>
                         <span
                           className={`px-3 py-1 rounded-full text-sm font-medium ${getZoneColor(
-                            prediction.score
+                            prediction.score,
                           )} text-white`}
                         >
                           {getZone(prediction.score)}
@@ -587,7 +587,7 @@ export default function FreshVision() {
                         <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
                           <div
                             className={`h-full bg-gradient-to-r ${getZoneGradient(
-                              prediction.score
+                              prediction.score,
                             )} rounded-full transition-all duration-1000 ease-out`}
                             style={{
                               width: `${(prediction.score / 300) * 100}%`,
@@ -615,7 +615,7 @@ export default function FreshVision() {
                         onClick={() => {
                           const blob = new Blob(
                             [JSON.stringify(prediction, null, 2)],
-                            { type: "application/json" }
+                            { type: "application/json" },
                           );
                           const url = URL.createObjectURL(blob);
                           const a = document.createElement("a");
